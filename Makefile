@@ -1,5 +1,5 @@
 CC = gcc
-FLEX = flex
+FLEX = ./flex
 
 LIBS = -lm 
 CCFLAGS = -Wall -ggdb
