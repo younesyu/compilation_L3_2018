@@ -7,7 +7,7 @@
 int yylex(void);
 extern char *yytext;
 FILE *yyin;
-
+/*
 int main(int argc, char **argv) {  
   int uniteCourante;
   char nom[100];
@@ -26,3 +26,4 @@ int main(int argc, char **argv) {
   
   return 0;
 }
+*/

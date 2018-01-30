@@ -1,7 +1,7 @@
 f(entier $a, entier $b)
 entier $c, entier $k;
 {
-	$k = $a + $b;
+	$@k = $a + $b;
 	retour $k;
 }
 main()

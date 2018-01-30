@@ -7,7 +7,7 @@
 %}
 %option yylineno
 %option nounput
-%option noinput
+%option noinput	
 
 /* Déclarations à compléter ... */
 lettre [a-zA-Z]
