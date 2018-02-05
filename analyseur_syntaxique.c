@@ -9,54 +9,61 @@ int yylex(void);
 extern char *yytext;
 FILE *yyin;
 
+void next() {
+	printf("%s", yytext);
+	uniteCourante = yylex();
+}
+
 void E (void) {
-	printf("Appel de %s\n", __func__);
 	T();
 	EPrime();
+	
+}
+
+void N() {
+	if (uniteCourante == NON) {
+		next();
+		N();
+	}
+
+	E();
 }
 
  void F (void) {
- 	printf("Appel de %s\n", __func__);
  	if (uniteCourante == PARENTHESE_OUVRANTE) {
- 		uniteCourante = yylex();
+		next();
  		E();
  		if (uniteCourante == PARENTHESE_FERMANTE) {
- 			uniteCourante = yylex();
+			next();
  			return;
  		}
  		else goto erreur;
  	}
- 	else if (uniteCourante == NOMBRE) {
- 		uniteCourante = yylex();
+ 	else if (uniteCourante == NOMBRE || uniteCourante == ID_VAR) {
+		next();
  		return;
  	}
  	erreur:
- 		printf("Erreur de syntaxe : %d, %s.\n", uniteCourante, __func__);
-		exit (-1);
+ 		printf("\nErreur de syntaxe : %s, %s.\n", yytext, __func__);
 
  }
 
 void T (void) {
-	printf("Appel de %s\n", __func__);
 	F();
 	TPrime();
 }
 
 void EPrime (void) {
-	printf("Appel de %s\n", __func__);
-
 	if(uniteCourante == PLUS || uniteCourante == MOINS) {
-		uniteCourante = yylex();
+		next();
 		E();
 	}
 }
 
 void TPrime (void) {
-	printf("Appel de %s\n", __func__);
-
 	if(uniteCourante == FOIS || uniteCourante == DIVISE) {
-		printf("la 2\n");
-		uniteCourante = yylex();
+		next();
 		T();
 	}
 }
+
